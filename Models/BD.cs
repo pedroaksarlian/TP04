@@ -24,7 +24,7 @@ public class BD{
         return FiguritaUsuario;
     }
 
-    public static int AbrirSobre(List<FiguritaUsuario> f)
+    public static int AbrirSobre(List<Jugadores> f)
     {
         int resultado = 0;
         for(int i = 0; i < f.Count; i++){
