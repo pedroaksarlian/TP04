@@ -18,10 +18,48 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult AbrirSobre()
     {
+        List<Jugadores> sobre = BD.GenerarSobre();
+        List<FiguritaUsuario> nuevas = new List<FiguritaUsuario>();
+        foreach (Jugadores j in sobre)
+        {
+            FiguritaUsuario f = new FiguritaUsuario();
+            f.idJugador = j.ID;
+            nuevas.Add(f);
+        }
+        BD.AbrirSobre(nuevas);
+        ViewBag.Sobre = sobre;
         return View();
     }
+    
+     public IActionResult Pegar(int id)
+    {
+        List<FiguritaUsuario> figuritas = BD.ObtenerFiguritas();
+        FiguritaUsuario pegar = null;
+        foreach(FiguritaUsuario f in figuritas)
+        {
+            if(f.idJugador == id)
+            {
+                pegar = f;
+            }
+        }
+        if(pegar != null)
+        {
+            BD.PegarFigurita(pegar);
+        }
+        return RedirectToAction("Album");
+    }
+
+    public IActionResult Album()
+    {
+        ViewBag.Album = BD.ObtenerFiguritasPegadas();
+        ViewBag.Jugadores = BD.ObtenerJugadores();
+        return View();
+    }
+
+
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
