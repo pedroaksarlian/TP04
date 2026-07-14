@@ -1,0 +1,57 @@
+@model List<TP04.Models.FiguritaUsuario>
+
+@using TP04.Models
+
+@{
+    ViewData["Title"] = "Álbum";
+
+    List<Jugadores> jugadores = ViewBag.Jugadores;
+}
+
+<h1>Mi Álbum</h1>
+
+<div class="contenedor">
+
+
+
+@foreach(FiguritaUsuario figurita in Model)
+{
+    @foreach(Jugadores jugador in jugadores)
+    {
+        @if(jugador.ID == figurita.idJugador)
+        {
+            <div class="carta">
+
+                <img src="/images/jugadores/@jugador.Foto" alt="@jugador.Nombre">
+                
+                <h3>@jugador.Nombre</h3>
+
+                <p>Número: @jugador.Numero</p>
+
+                <p>@jugador.Posicion</p>
+
+                <p>Cantidad: @figurita.Cantidad</p>
+
+                @if(figurita.Pegada)
+                {
+                    <p>Pegada</p>
+                }
+                else
+                {
+                    <a href='@Url.Action("Pegar","Home", new { id = jugador.ID })' class="boton">
+                        Pegar
+                    </a>
+                }
+
+            </div>
+        }
+    }
+}
+
+</div>
+
+<br>
+
+<a href='@Url.Action("Index","Home")' class="boton">
+    Volver al Inicio
+</a>

@@ -1,0 +1,30 @@
+@model List<TP04.Models.Jugadores>
+
+@{
+    ViewData["Title"] = "Sobre";
+}
+
+<h1>Tu Sobre</h1>
+
+<div class="contenedor">
+
+@foreach(var jugador in Model)
+{
+    <div class="carta">
+
+        <img src="/images/jugadores/@jugador.Foto" alt="@jugador.Nombre">
+
+        <h3>@jugador.Nombre</h3>
+
+        <p>Número: @jugador.Numero</p>
+
+        <p>@jugador.Posicion</p>
+
+    </div>
+}
+
+</div>
+
+<a href='@Url.Action("Album","Home")' class="boton">
+    Ir al Álbum
+</a>

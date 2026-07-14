@@ -1,12 +1,16 @@
-﻿<h1>Álbum del Mundial</h1>
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
 
-<div class="menu">
+<div class="inicio">
 
-    <a href='@Url.Action("AbrirSobre","Home")'>
+    <h1>Álbum del Mundial</h1>
+
+    <a href='@Url.Action("AbrirSobre","Home")' class="boton">
         Abrir Sobre
     </a>
 
-    <a href='@Url.Action("Album","Home")'>
+    <a href='@Url.Action("Album","Home")' class="boton">
         Ver Álbum
     </a>
 
