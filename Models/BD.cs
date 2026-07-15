@@ -69,9 +69,10 @@ public class BD{
     public static List<Jugadores> ObtenerJugadores()
     {
         List<Jugadores> Jugadores = new List <Jugadores>();
+        string query = "SELECT Jugadores.*, Selecciones.Pais FROM Jugadores INNER JOIN Selecciones ON Jugadores.idSeleccion = Selecciones.ID ORDER BY Jugadores.idSeleccion, Jugadores.Numero";
         using(SqlConnection connection = new SqlConnection(connectionString)) 
         {
-            Jugadores = connection.Query<Jugadores>("SELECT * FROM Jugadores ORDER BY idSeleccion").ToList();
+            Jugadores = connection.Query<Jugadores>(query).ToList();
         }
         return Jugadores;
     }
@@ -89,4 +90,14 @@ public class BD{
         }
         return sobre;
 }
+
+    public static List<Selecciones> ObtenerSelecciones()
+    {
+         List<Selecciones> selecciones = new List <Selecciones>();
+
+        using(SqlConnection connection = new SqlConnection(connectionString)) {
+            selecciones = connection.Query<Selecciones>("SELECT * FROM Selecciones ORDER BY Pais").ToList();
+        }
+        return selecciones;
+    }
 }

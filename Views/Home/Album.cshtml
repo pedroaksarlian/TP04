@@ -6,20 +6,29 @@
     ViewData["Title"] = "Álbum";
 
     List<Jugadores> jugadores = ViewBag.Jugadores;
+    List<Selecciones> selecciones = ViewBag.Selecciones;
 }
 
 <h1>Mi Álbum</h1>
 
-<div class="contenedor">
 
 
 
-@foreach(FiguritaUsuario figurita in Model)
+@foreach(Selecciones seleccion in selecciones)
 {
+    <h2>@seleccion.Pais</h2>
+
+    <div class="contenedor">
+
     @foreach(Jugadores jugador in jugadores)
     {
-        @if(jugador.ID == figurita.idJugador)
+        @if(jugador.idSeleccion == seleccion.ID)
         {
+            @foreach(FiguritaUsuario figurita in Model){
+                
+                @if(jugador.ID == figurita.idJugador){
+
+                
             <div class="carta">
 
                 <img src="/images/jugadores/@jugador.Foto" alt="@jugador.Nombre">
@@ -44,11 +53,15 @@
                 }
 
             </div>
+                
+            }
         }
     }
 }
+    </div>
+}
 
-</div>
+
 
 <br>
 

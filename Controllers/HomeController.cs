@@ -28,6 +28,7 @@ public class HomeController : Controller
     public IActionResult Album()
     {
         ViewBag.Jugadores = BD.ObtenerJugadores();
+        ViewBag.Selecciones = BD.ObtenerSelecciones();
         return View(BD.ObtenerFiguritas());
     }
 
