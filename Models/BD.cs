@@ -71,7 +71,7 @@ public class BD{
         List<Jugadores> Jugadores = new List <Jugadores>();
         using(SqlConnection connection = new SqlConnection(connectionString)) 
         {
-            Jugadores = connection.Query<Jugadores>("SELECT * FROM Jugadores").ToList();
+            Jugadores = connection.Query<Jugadores>("SELECT * FROM Jugadores ORDER BY idSeleccion").ToList();
         }
         return Jugadores;
     }
